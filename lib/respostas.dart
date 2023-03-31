@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Resposta extends StatelessWidget {
-  final String texto;
+class Answer extends StatelessWidget {
+  final String text;
   final void Function() onSelection;
 
-  Resposta(this.texto, this.onSelection);
+  Answer(this.text, this.onSelection);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class Resposta extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        child: Text(texto),
+        child: Text(text),
         onPressed: onSelection,
       ),
     );

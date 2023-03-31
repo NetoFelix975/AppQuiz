@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Resultado extends StatelessWidget {
-  final int pontuacao;
-  final void Function() qunadoReiniciarQuestionario;
+class Result extends StatelessWidget {
+  final int score;
+  final void Function() whenRestartQuiz;
 
-  const Resultado(this.pontuacao, this.qunadoReiniciarQuestionario,
-      {super.key});
+  const Result(this.score, this.whenRestartQuiz, {super.key});
 
-  String get fraseResultado {
-    if (pontuacao < 8) {
+  String get sentenceResult {
+    if (score < 8) {
       return 'parabens!';
-    } else if (pontuacao < 12) {
+    } else if (score < 12) {
       return 'você é bom!';
     } else {
       return 'nível jedi!';
@@ -27,14 +26,14 @@ class Resultado extends StatelessWidget {
       children: [
         Center(
           child: Text(
-            fraseResultado,
+            sentenceResult,
             style: const TextStyle(
               fontSize: 28,
             ),
           ),
         ),
         TextButton(
-          onPressed: qunadoReiniciarQuestionario,
+          onPressed: whenRestartQuiz,
           child: const Text(
             'Reiniciar?',
             style: TextStyle(

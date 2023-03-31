@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'resultado.dart';
 import './questionario.dart';
 
-void main() => runApp(const PerguntaApp());
+void main() => runApp(const QuizApp());
 
-class _PerguntaAppState extends State<PerguntaApp> {
-  var _perguntaSelecionada = 0;
-  var _pontuacaoTotal = 0;
-  final _perguntas = const [
+class _QuizAppState extends State<QuizApp> {
+  var _selectedQuestion = 0;
+  var _totalScore = 0;
+  final _questions = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
@@ -37,24 +37,24 @@ class _PerguntaAppState extends State<PerguntaApp> {
     }
   ];
 
-  void _responder(int pontuacao) {
-    if (temPerguntaSelecionada) {
+  void _toRespond(int score) {
+    if (withSelectedQuestion) {
       setState(() {
-        _perguntaSelecionada++;
-        _pontuacaoTotal += pontuacao;
+        _selectedQuestion++;
+        _totalScore += score;
       });
     }
   }
 
-  void _reiniciarQuestionario() {
+  void _restartQuiz() {
     setState(() {
-      _perguntaSelecionada = 0;
-      _pontuacaoTotal = 0;
+      _selectedQuestion = 0;
+      _totalScore = 0;
     });
   }
 
-  bool get temPerguntaSelecionada {
-    return _perguntaSelecionada < _perguntas.length;
+  bool get withSelectedQuestion {
+    return _selectedQuestion < _questions.length;
   }
 
   @override
@@ -64,23 +64,23 @@ class _PerguntaAppState extends State<PerguntaApp> {
         appBar: AppBar(
           title: const Text('Perguntas'),
         ),
-        body: temPerguntaSelecionada
-            ? Questionario(
-                perguntas: _perguntas,
-                perguntaSelecionada: _perguntaSelecionada,
-                responder: _responder,
+        body: withSelectedQuestion
+            ? Quiz(
+                questions: _questions,
+                selectedQuestion: _selectedQuestion,
+                toRespond: _toRespond,
               )
-            : Resultado(_pontuacaoTotal, _reiniciarQuestionario),
+            : Result(_totalScore, _restartQuiz),
       ),
     );
   }
 }
 
-class PerguntaApp extends StatefulWidget {
-  const PerguntaApp({super.key});
+class QuizApp extends StatefulWidget {
+  const QuizApp({super.key});
 
   @override
-  _PerguntaAppState createState() {
-    return _PerguntaAppState();
+  _QuizAppState createState() {
+    return _QuizAppState();
   }
 }
