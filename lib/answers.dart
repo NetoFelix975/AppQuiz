@@ -12,8 +12,9 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
+        style: ButtonStyle(minimumSize: MaterialStateProperty.all(Size(<infinity>,<27>))),
+         ElevatedButton.styleFrom(
+          backgroundColor: Colors.black,
           textStyle: TextStyle(
             color: Colors.white,
           ),
